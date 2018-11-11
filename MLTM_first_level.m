@@ -1,4 +1,4 @@
-function MLTM_second_level(options)
+function MLTM_first_level(options)
 %Performs all analysis steps for one subject of the MLTM study (up until
 % first level modelbased statistics)
 %   IN:     id          subject identifier string, e.g. '151'
