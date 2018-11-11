@@ -18,6 +18,10 @@ options.code                 = fullfile(fileparts(mfilename('fullpath')));
 options.model.pathPerceptual = fullfile([options.code,'/Perceptual_Model']);
 options.model.pathResponse   = fullfile([options.code,'/Response_Model']);
 
+% Analysis setting 
+options.firstlevel  = [0 1];
+options.secondlevel = [1 0];
+
 % Add paths: HGF, VBA
 addpath(genpath(options.model.pathPerceptual));
 addpath(genpath(options.model.pathResponse));

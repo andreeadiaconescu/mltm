@@ -5,7 +5,7 @@ function MLTM_second_level(options)
 %           options     as set by dmpad_set_analysis_options();
 
 fprintf('\n===\n\t The following pipeline Steps were selected. Please double-check:\n\n');
-Analysis_Strategy = [0 1];
+Analysis_Strategy = options.secondlevel;
 disp(Analysis_Strategy);
 fprintf('\n\n===\n\n');
 pause(2);
