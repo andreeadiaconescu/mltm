@@ -6,11 +6,12 @@ subjAll = {'1071' '1088' '2024' '2037' '2127' '2251' '2261' '2278' '2309',...
 '2946' '3049' '3077' '3123' '3139' '3145' '3146' '3168' '3234' '3301' '4564',...
  '4774' '4991' '5000' '5003' '5005' '5054' '5075'};
  
- logDir =['/data/lara/SB',num2str(subjAll),'/behav_data'];
-    cd (logDir);
-    mkdir HGF_analysis;
-    fitDir = ['/data/lara/SB',num2str(subjAll),'/behav_data/HGF_analysis'];
-    hgfscripts = '/data/lara/scripts/SocialBayes/HGF_implicit_advice_reward/Meltem_original';
+currentPath = '/Users/drea/Documents/Collaborations/LeoSchilbach_ImplicitAdvice/';
+ logDir =[currentPath, 'Data/' ,num2str(subjAll);
+    cd (currentPath);
+    mkdir HGF_inversion;
+    fitDir = fullfile(['HGF_inversion',num2str(subjAll)]);
+    hgfscripts = '/Users/drea/Documents/Collaborations/LeoSchilbach_ImplicitAdvice/Code/Meltem_original_withadjustment';
 
 % Loop for model estimation per subject.
 for i = 1:length(subjAll)
@@ -20,15 +21,15 @@ for i = 1:length(subjAll)
     subjLog = load(subjFileName);
     responses = subjLog(:,9); % responses where the subject took the advice.
     responses(responses==-1) = NaN;
-    %adviceTaken(i,:) = sum(~isnan(responses));
+    adviceTaken(i,:) = sum(~isnan(responses));
     inputs = [subjLog(:,5) subjLog(:,6)];
     est_int = fitModel(responses, inputs);
+    est_int.adviceTaken = adviceTaken;
     cd(fitDir)
     mkdir(fitDir, subjAll{i})
     cd(fullfile(fitDir, subjAll{i}))
     save  est_int est_int
-    clear est_int
-     
+    clear est_int    
 end
 
 
