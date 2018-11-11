@@ -15,7 +15,6 @@ for  i = 1:length(subjAll)
             blue_value=subjLog(:,3);
             green_value=subjLog(:,4);
             responses(responses==-1) = NaN;
-            adviceTaken(i,:) = sum(~isnan(responses));
             inputs = [subjLog(:,5) subjLog(:,6) blue_value green_value];
             est_int = fitModel(responses, inputs,options.model.perceptualModels{iPrp},options.model.responseModels{iRsp});
             est_int.adviceTaken = adviceTaken;
