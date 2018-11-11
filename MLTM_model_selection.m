@@ -36,7 +36,7 @@ for i=1:N
     
 end
 set(gca,'XTick',1:nModels)
-set(gca,'XTickLabel',{'Both','Card'});
+set(gca,'XTickLabel',options.model.labels);
 ylabel('p(r|y)');
 
 figure;
@@ -48,7 +48,7 @@ for i=1:N
     set(j,'FaceColor',colorsExceedance(i,:))
 end
 set(gca,'XTick',1:nModels)
-set(gca,'XTickLabel',{'Both','Card'});
+set(gca,'XTickLabel',options.model.labels);
 ylabel('Exceedance Probabilities');
 disp(['Best model: ', num2str(find(model_posterior==max(model_posterior)))]);
 end

@@ -27,13 +27,14 @@ addpath(genpath('/Users/drea/Documents/MATLAB/VBA_toolbox/VBA-toolbox'));
 options.family.template             = fullfile(options.configroot,'family_allmodels.mat');
 options.questionnaires              = fullfile([options.dataroot,'/Questionnaire_Data/Meltem_DataQuestionnaires.xlsx']);
 
-options.model.perceptualModels   = {'hgf_binary3l_reward_social_config'};
+options.model.perceptualModels   = {'hgf_binary3l_reward_social_config','hgf_binary3l_normative_config',...
+                                    'hgf_binary_reward_social_config'};
 options.model.responseModels     =  {'softmax_reward_social_config','softmax_reward_config'};
 options.model.labels = ...
-    {'Both', 'Reward','Normative'};
+    {'HGF_Both', 'HGF_Card','Normative_Both','Normative_Card','HGFDrift_Both','HGFDrift_Card'};
 
-options.family.responsemodels1.labels = {'Both','Reward','Normative'};
-options.family.responsemodels1.partition = [1 2 3 1 2 3 1 2 3 1 2 3];
+options.family.responsemodels1.labels = {'Both','Card'};
+options.family.responsemodels1.partition = [1 2 1 2 1 2];
 
 
 

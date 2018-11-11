@@ -1,9 +1,15 @@
 function [models] = MLTM_extractLME(options,subjAll)
 
 % pairs of perceptual and response model
-iCombPercResp = zeros(2,2);
+iCombPercResp = zeros(6,2);
 iCombPercResp(1:2,1) = 1;
 iCombPercResp(1:2,2) = 1:2;
+
+iCombPercResp(3:4,1) = 2;
+iCombPercResp(3:4,2) = 1:2;
+iCombPercResp(5:6,1) = 3;
+iCombPercResp(5:6,2) = 1:2;
+
 
 nModels = size(iCombPercResp,1);
 models_mltm = cell(numel(subjAll), nModels);
