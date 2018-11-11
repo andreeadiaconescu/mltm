@@ -13,7 +13,7 @@ savepath = [pathroot '/sim_results/'];
 rp_model= {'softmax_reward_social'};
 prc_model= {'hgf_binary3l_reward_social'};
 
-data = {'leo_inputs_cue_advice'}; % input structure
+data = {'inputs_cue_advice'}; % Load input structure here
 
 omega_parArray=[-3.5:-0.5:-6.5];
 
@@ -92,19 +92,19 @@ end
         pc = 1./(x_r.*(1-x_r));
 
         % Version 1
-        % wx = ze1.*px./(ze1.*px + pc); % precision first level
-        % wc = pc./(ze1.*px + pc);
+        wx = ze1.*px./(ze1.*px + pc); % precision first level
+        wc = pc./(ze1.*px + pc);
         
         % Version 2
-        priorx=sim.p_obs.ze.*1./sim.p_prc.sa2a_0.*1./sgm(sim.p_prc.mu2a_0, 1)./...
-            (sim.p_obs.ze.*1./sgm(sim.p_prc.mu2a_0, 1).* 1./sim.p_prc.sa2a_0 + 1./sgm(sim.p_prc.mu2r_0, 1).*1./sim.p_prc.sa2r_0);
-        priorc=1./sgm(sim.p_prc.mu2r_0, 1).*1./sim.p_prc.sa2r_0./...
-            (sim.p_obs.ze.*1./sgm(sim.p_prc.mu2a_0, 1).*1./sim.p_prc.sa2a_0 + 1./sgm(sim.p_prc.mu2r_0, 1).*1./sim.p_prc.sa2r_0);
-        
-        wx = sim.p_obs.ze.*1./sa2hat_a.*px./...
-            (sim.p_obs.ze.*px.*1./sa2hat_a + pc.*1./sa2hat_r);
-        wc = 1./sa2hat_r.*pc./...
-            (sim.p_obs.ze.*px.*1./sa2hat_a + pc.*1./sa2hat_r);
+%         priorx=sim.p_obs.ze.*1./sim.p_prc.sa2a_0.*1./sgm(sim.p_prc.mu2a_0, 1)./...
+%             (sim.p_obs.ze.*1./sgm(sim.p_prc.mu2a_0, 1).* 1./sim.p_prc.sa2a_0 + 1./sgm(sim.p_prc.mu2r_0, 1).*1./sim.p_prc.sa2r_0);
+%         priorc=1./sgm(sim.p_prc.mu2r_0, 1).*1./sim.p_prc.sa2r_0./...
+%             (sim.p_obs.ze.*1./sgm(sim.p_prc.mu2a_0, 1).*1./sim.p_prc.sa2a_0 + 1./sgm(sim.p_prc.mu2r_0, 1).*1./sim.p_prc.sa2r_0);
+%         
+%         wx = sim.p_obs.ze.*1./sa2hat_a.*px./...
+%             (sim.p_obs.ze.*px.*1./sa2hat_a + pc.*1./sa2hat_r);
+%         wc = 1./sa2hat_r.*pc./...
+%             (sim.p_obs.ze.*px.*1./sa2hat_a + pc.*1./sa2hat_r);
         
         % Version 3
 %         priorx=sim.p_obs.ze.*exp(sim.p_prc.sa3a_0)./...
