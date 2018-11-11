@@ -22,8 +22,8 @@ figure(...
 t = size(r.u,1);
 
 % Optional plotting of standard deviations (true or false)
-plotsd2 = false;
-plotsd3 = false;
+plotsd2 = true;
+plotsd3 = true;
 
 % Subplots
 %% 
@@ -68,23 +68,25 @@ ylabel('\mu_3');
 %%
 subplot(2,1,2);
 
-plot(0:t, [sgm(r.p_prc.mu2r_0, 1); sgm(r.traj.mu_r(:,2), 1)], 'r', 'LineWidth', 2);
+plot(0:t, [tapas_sgm(r.p_prc.mu2r_0, 1); tapas_sgm(r.traj.mu_r(:,2), 1)], 'r', 'LineWidth', 2);
 hold all;
-plot(0, sgm(r.p_prc.mu2r_0, 1), 'or', 'LineWidth', 2); % prior
+plot(0, tapas_sgm(r.p_prc.mu2r_0, 1), 'or', 'LineWidth', 2); % prior
 plot(1:t, r.u(:,1), '*', 'Color', 'k'); % reward
 
-plot(0:t, [sgm(r.p_prc.mu2a_0, 1); sgm(r.traj.mu_a(:,2), 1)], 'm', 'LineWidth', 2);
-plot(0, sgm(r.p_prc.mu2a_0, 1), 'or', 'LineWidth', 2); % prior
+plot(0:t, [tapas_sgm(r.p_prc.mu2a_0, 1); tapas_sgm(r.traj.mu_a(:,2), 1)], 'm', 'LineWidth', 2);
+plot(0, tapas_sgm(r.p_prc.mu2a_0, 1), 'or', 'LineWidth', 2); % prior
 plot(1:t, r.u(:,2), 'o', 'Color', [0 0.6 0]); % advice
 
 if ~isempty(find(strcmp(fieldnames(r),'y'))) && ~isempty(r.y)
-    y = r.y(:,1) -0.5; y = 1.16 *y; y = y +0.5; % stretch
+    y = r.y(:,1) -0.5; 
+    y = 1.16 *y; 
+    y = y +0.5; % stretch
     if ~isempty(find(strcmp(fieldnames(r),'irr')))
         y(r.irr) = NaN; % weed out irregular responses
         plot(r.irr,  1.08.*ones([1 length(r.irr)]), 'x', 'Color', [1 0.7 0], 'Markersize', 11, 'LineWidth', 2); % irregular responses
         plot(r.irr, -0.08.*ones([1 length(r.irr)]), 'x', 'Color', [1 0.7 0], 'Markersize', 11, 'LineWidth', 2); % irregular responses
     end
-    plot(1:t, y, '.', 'Color', [1 0.7 0]); % responses
+    plot(1:t, y, '.', 'Color', [1 0.7 0], 'Markersize', 11); % responses
     title({'Response y (orange), input cue (black) and input advice (green)'; ...
         ''; ['Posterior expectation of cue s(\mu_2) (red) for \omega cue=', ...
            num2str(r.p_prc.om_r), ' and of advice s(\mu_2) (magenta)  \omega advice=', num2str(r.p_prc.om_a), ...

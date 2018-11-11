@@ -52,13 +52,15 @@ if plotsd3 == true
 end
 
 % reward
-plot(0:t, [r.p_prc.sa3r_0; r.traj.sahat_r(:,3).*1/2*r.p_prc.ka_r.*r.traj.w_r], 'b', 'LineWidth', 2);
+prior_lr3_r=r.p_prc.sa3r_0.*1/2.*r.p_prc.ka_r;
+plot(0:t, [prior_lr3_r; r.traj.sahat_r(:,3).*1/2*r.p_prc.ka_r.*r.traj.w_r], 'b', 'LineWidth', 2);
 hold all;
-plot(0, r.p_prc.sa3r_0, 'ob', 'LineWidth', 2); % prior
+plot(0, prior_lr3_r, 'ob', 'LineWidth', 2); % prior
 
 % advice
-plot(0:t, [r.p_prc.sa3a_0; r.traj.sahat_a(:,3).*1/2*r.p_prc.ka_a.*r.traj.w_a], 'c', 'LineWidth', 2);
-plot(0, r.p_prc.sa3a_0, 'ob', 'LineWidth', 2); % prior
+prior_lr23_a=r.p_prc.sa3a_0.*1/2.*r.p_prc.ka_a;
+plot(0:t, [prior_lr23_a; r.traj.sahat_a(:,3).*1/2*r.p_prc.ka_a.*r.traj.w_a], 'c', 'LineWidth', 2);
+plot(0, prior_lr23_a, 'ob', 'LineWidth', 2); % prior
 xlim([0 t]);
 title('Volatility cue-related learning rate (blue) and advice-related learning rate (cyan)', 'FontWeight', 'bold');
 xlabel('Trial number');
@@ -66,15 +68,19 @@ ylabel('lr_3');
 
 %%
 subplot(2,1,2);
+prior_lr2_r=sgm(r.p_prc.sa2r_0, 1).*sgm(r.p_prc.mu2r_0, 1).*(1-sgm(r.p_prc.mu2r_0, 1));
 sa1hat_r=r.traj.muhat_r(:,1).*(1-r.traj.muhat_r(:,1));
 sa1hat_a=r.traj.muhat_a(:,1).*(1-r.traj.muhat_a(:,1));
 
-plot(0:t, [sgm(r.p_prc.sa2r_0, 1); r.traj.sahat_r(:,2).*sa1hat_r], 'r', 'LineWidth', 2);
+plot(0:t, [prior_lr2_r;...
+    r.traj.sahat_r(:,2).*sa1hat_r], 'r', 'LineWidth', 2);
 hold all;
-plot(0, sgm(r.p_prc.sa2r_0, 1), 'or', 'LineWidth', 2); % prior
+plot(0, prior_lr2_r, 'or', 'LineWidth', 2); % prior
 plot(1:t, r.u(:,1), '*', 'Color', 'k'); % reward
 
-plot(0:t, [sgm(r.p_prc.sa2a_0, 1); r.traj.sahat_a(:,2).*sa1hat_a], 'm', 'LineWidth', 2);
+prior_lr2_a=sgm(r.p_prc.sa2a_0, 1).*sgm(r.p_prc.mu2a_0, 1).*(1-sgm(r.p_prc.mu2a_0, 1));
+plot(0:t, [prior_lr2_a;...
+    r.traj.sahat_a(:,2).*sa1hat_a], 'm', 'LineWidth', 2);
 plot(0, sgm(r.p_prc.sa2a_0, 1), 'or', 'LineWidth', 2); % prior
 plot(1:t, r.u(:,2), 'o', 'Color', [0 0.6 0]); % advice
 
@@ -89,7 +95,7 @@ if ~isempty(find(strcmp(fieldnames(r),'y'))) && ~isempty(r.y)
     title({'Response y (orange), input cue (black), input advice (green)';...
         '';['Value cue-related learning rate (red) for \omega cue=', ...
            num2str(r.p_prc.om_r), ', and advice-related learning rate (magenta)  \omega advice=', num2str(r.p_prc.om_a), ...
-           ' with advice weight \zeta =' num2str(r.p_obs.ze1)]}, ...
+           ' with advice weight \zeta =' num2str(r.p_obs.ze)]}, ...
       'FontWeight', 'bold');
   
     ylabel('y, u, lr_1');
