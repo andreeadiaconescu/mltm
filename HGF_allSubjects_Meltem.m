@@ -21,7 +21,7 @@ for i = 1:length(subjAll)
     subjLog = load(subjFileName);
     responses = subjLog(:,9); % responses where the subject took the advice.
     responses(responses==-1) = NaN;
-    adviceTaken(i,:) = sum(~isnan(responses));
+    adviceTaken = nansum((responses));
     inputs = [subjLog(:,5) subjLog(:,6)];
     est_int = fitModel(responses, inputs);
     est_int.adviceTaken = adviceTaken;
