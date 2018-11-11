@@ -30,9 +30,9 @@ options.questionnaires              = fullfile([options.dataroot,'/Questionnaire
 options.model.perceptualModels   = {'hgf_binary3l_reward_social_config'};
 options.model.responseModels     =  {'softmax_reward_social_config','softmax_reward_config'};
 options.model.labels = ...
-    {'Both', 'Reward','Social'};
+    {'Both', 'Reward','Normative'};
 
-options.family.responsemodels1.labels = {'Both','Reward','Advice'};
+options.family.responsemodels1.labels = {'Both','Reward','Normative'};
 options.family.responsemodels1.partition = [1 2 3 1 2 3 1 2 3 1 2 3];
 
 

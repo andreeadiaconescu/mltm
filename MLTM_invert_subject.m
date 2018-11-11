@@ -17,10 +17,6 @@ for  i = 1:length(subjAll)
             responses(responses==-1) = NaN;
             inputs = [subjLog(:,5) subjLog(:,6) blue_value green_value];
             est_int = fitModel(responses, inputs,options.model.perceptualModels{iPrp},options.model.responseModels{iRsp});
-            est_int.adviceTaken = adviceTaken;
-            hgf_plotTraj_reward_social(est_int);
-            cd(options.resultroot)
-            mkdir(options.resultroot, subjAll{i});
             save(fullfile(options.resultroot,[subjAll{i},options.model.perceptualModels{iPrp}, ...
                 options.model.responseModels{iRsp},'.mat']), 'est_int','-mat');
         end
