@@ -16,7 +16,10 @@ for  i = 1:length(subjAll)
     
     % Responses
     responses = subjLog(:,9); % responses where the subject took the advice.
-    remove_ones_y           = (responses(:,1)+ones(size(responses)).*5)./5;
+    remove_zeros_advice_correct = (advice_correct(:,1)+ones(size(responses)).*5)./6;
+    take_Helpful = (responses==remove_zeros_advice_correct); % responses where the subject took the advice.
+    remove_ones_advice_correct  = (advice_correct(:,1)+ones(size(advice_correct)).*6)./6;
+    remove_ones_y = (responses(:,1)+ones(size(responses)).*5)./5;
     invert_responses =  remove_ones_y == responses+ones(size(responses));       % responses where the subject went against the advice.
     for k= 1:length(blue_correct)
         if blue_correct(k,:)== 1 && advice_correct(k,:)==1
@@ -47,6 +50,8 @@ for  i = 1:length(subjAll)
     adviceTaken = nansum((responses))./size(responses,1);
     behav_var = [];
     behav_var.adviceTaken = adviceTaken;
+    behav_var.takeHelpful = sum(take_Helpful)./sum(advice_correct);
+    behav_var.againstIncorrect = sum((remove_ones_y==remove_ones_advice_correct))./(size(responses,1)-sum(advice_correct(:,1)));
     behav_var.averageReward_when_follow_gaze = averageReward_when_follow_gaze;
     behav_var.averageReward_when_Notfollow_gaze = averageReward_when_Notfollow_gaze;
     save(fullfile(options.resultroot,[subjAll{i},'behaviour_variables.mat']), 'behav_var','-mat');
