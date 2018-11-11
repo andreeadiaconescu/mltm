@@ -19,11 +19,11 @@ pvec(3)       = ptrans(3);                   % mu3r_0
 pstruct.mu3r_0 = pvec(3);
 pvec(4)     = exp(ptrans(4));                % sa3r_0
 pstruct.sa3r_0 = pvec(4);
-pvec(5)       = sgm(ptrans(5),r.c_prc.kaub_r); % ka_r
+pvec(5)       = tapas_sgm(ptrans(5),r.c_prc.kaub_r); % ka_r
 pstruct.ka_r    = pvec(5);
 pvec(6)       = ptrans(6);                   % om_r
 pstruct.om_r    = pvec(6);
-pvec(7)       = sgm(ptrans(7),r.c_prc.thub_r); % th_r
+pvec(7)       = tapas_sgm(ptrans(7),r.c_prc.thub_r); % th_r
 pstruct.th_r    = pvec(7);
 
 pvec(8)       = ptrans(8);                   % mu2a_0
@@ -34,11 +34,11 @@ pvec(10)       = ptrans(10);                   % mu3a_0
 pstruct.mu3a_0 = pvec(10);
 pvec(11)     = exp(ptrans(11));                % sa3a_0
 pstruct.sa3a_0 = pvec(11);
-pvec(12)       = sgm(ptrans(12),r.c_prc.kaub_a); % ka_a
+pvec(12)       = tapas_sgm(ptrans(12),r.c_prc.kaub_a); % ka_a
 pstruct.ka_a    = pvec(12);
 pvec(13)       = ptrans(13);                   % om_a
 pstruct.om_a    = pvec(13);
-pvec(14)       = sgm(ptrans(14),r.c_prc.thub_a); % th_a
+pvec(14)       = tapas_sgm(ptrans(14),r.c_prc.thub_a); % th_a
 pstruct.th_a    = pvec(14);
 
 return;

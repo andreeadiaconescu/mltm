@@ -130,13 +130,13 @@ da2_a    = NaN(n_a,1);
 % NaN because they are undefined and are thrown away
 % at the end; their presence simply leads to consistent
 % trial indices.
-mu1_r(1) = sgm(mu2r_0, 1);
+mu1_r(1) = tapas_sgm(mu2r_0, 1);
 mu2_r(1) = mu2r_0;
 pi2_r(1) = 1/sa2r_0;
 mu3_r(1) = mu3r_0;
 pi3_r(1) = 1/sa3r_0;
 
-mu1_a(1) = sgm(mu2a_0, 1);
+mu1_a(1) = tapas_sgm(mu2a_0, 1);
 mu2_a(1) = mu2a_0;
 pi2_a(1) = 1/sa2a_0;
 mu3_a(1) = mu3a_0;
@@ -154,8 +154,8 @@ for k = 2:1:n_r
         % ~~~~~~~~~
         % Prediction
 
-        mu1hat_r(k) = sgm(mu2_r(k-1), 1);
-        mu1hat_a(k) = sgm(mu2_a(k-1), 1);
+        mu1hat_r(k) = tapas_sgm(mu2_r(k-1), 1);
+        mu1hat_a(k) = tapas_sgm(mu2_a(k-1), 1);
         
         % Precision of prediction
         pi1hat_r(k) = 1/(mu1hat_r(k)*(1 -mu1hat_r(k)));
