@@ -21,12 +21,8 @@ options.model.pathResponse   = fullfile([options.code,'/Response_Model']);
 % Add paths: HGF, VBA
 addpath(genpath(options.model.pathPerceptual));
 addpath(genpath(options.model.pathResponse));
-addpath(genpath('/Users/drea/Documents/MATLAB/tapas_v2/tapas/tapas/HGF'));
 addpath(genpath('/Users/drea/Documents/MATLAB/VBA_toolbox/VBA-toolbox'));
 
-options.pipe.executeStepsPerSubject = {
-    'inversion'
-    };
 
 options.family.template             = fullfile(options.configroot,'family_allmodels.mat');
 options.questionnaires              = fullfile([options.dataroot,'/Questionnaire_Data/Meltem_DataQuestionnaires.xlsx']);
