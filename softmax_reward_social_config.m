@@ -23,15 +23,12 @@ c.model = 'softmax_reward_social';
 
 
 % Zeta is in log-space
-c.logze1mu = log(0.5);
-c.logze1sa = 4^2; % 4^2;
+c.logze1mu = log(2.7183);
+c.logze1sa = 5^2;
 
-% c.logze1mu = -Inf;
-% c.logze1sa = 0; % 4^2;
-
-% Beta
+% Beta in log-space
 c.logbetamu = log(48);
-c.logbetasa = 0; %4^2
+c.logbetasa = 1;
 
 % Gather prior settings in vectors
 c.priormus = [

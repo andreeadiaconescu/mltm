@@ -105,8 +105,9 @@ wc = pc./(ze1.*px + pc);
 % wc = pc.*1./sa2hat_r./(ze1.*px.*1./sa2hat_a + pc.*1./sa2hat_r);
 
 %% Version 3
-beta=exp(-mu3_hat_r)+exp(-mu3_hat_a);
-
+% beta=exp(-mu3_hat_r)+exp(-mu3_hat_a);
+% beta=exp((-mu3_hat_r)+exp(-mu3_hat_a)+(log(beta)));
+beta=exp((log(beta)));
 %%
 
 
