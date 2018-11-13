@@ -3,14 +3,21 @@ function MLTM_invert_subject(options)
 subjAll = options.subjects;
 
 % pairs of perceptual and response model
-iCombPercResp = zeros(6,2);
+iCombPercResp = zeros(12,2);
 iCombPercResp(1:2,1) = 1;
-iCombPercResp(1:2,2) = 1:2;
-
 iCombPercResp(3:4,1) = 2;
-iCombPercResp(3:4,2) = 1:2;
 iCombPercResp(5:6,1) = 3;
+iCombPercResp(1:2,2) = 1:2;
+iCombPercResp(3:4,2) = 1:2;
 iCombPercResp(5:6,2) = 1:2;
+
+iCombPercResp(7:8,1) = 1;
+iCombPercResp(9:10,1) = 2;
+iCombPercResp(11:12,1) = 3;
+
+iCombPercResp(7:8,2)  = 3:4;
+iCombPercResp(9:10,2) = 3:4;
+iCombPercResp(11:12,2)= 3:4;
 
 nModels = size(iCombPercResp,1);
 

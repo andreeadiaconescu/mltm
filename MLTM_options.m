@@ -20,7 +20,7 @@ options.model.pathResponse   = fullfile([options.code,'/Response_Model']);
 
 % Analysis setting 
 options.firstlevel  = [0 1];
-options.secondlevel = [1 0];
+options.secondlevel = [1 1];
 
 % Add paths: HGF, VBA
 addpath(genpath(options.model.pathPerceptual));
@@ -33,12 +33,14 @@ options.questionnaires              = fullfile([options.dataroot,'/Questionnaire
 
 options.model.perceptualModels   = {'hgf_binary3l_reward_social_config','hgf_binary3l_normative_config',...
                                     'hgf_binary_reward_social_config'};
-options.model.responseModels     =  {'softmax_reward_social_config','softmax_reward_config'};
+options.model.responseModels     =  {'softmax_reward_social_config','softmax_reward_config',...
+                                     'softmax_reward_social_no_reward_config','softmax_reward_no_reward_config'};
 options.model.labels = ...
-    {'HGF_Both', 'HGF_Card','Normative_Both','Normative_Card','HGFDrift_Both','HGFDrift_Card'};
+    {'HGF_Both', 'HGF_Card','Normative_Both','Normative_Card','HGFDrift_Both','HGFDrift_Card',...
+    'HGF_Both', 'HGF_Card','Normative_Both','Normative_Card','HGFDrift_Both','HGFDrift_Card'};
 
 options.family.responsemodels1.labels = {'Both','Card'};
-options.family.responsemodels1.partition = [1 2 1 2 1 2];
+options.family.responsemodels1.partition = [1 2 1 2 1 2 1 2 1 2 1 2];
 
 
 
