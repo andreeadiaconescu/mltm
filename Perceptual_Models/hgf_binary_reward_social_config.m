@@ -115,9 +115,9 @@ c.thub_a = 1;
 % Initial mu2
 % Usually best kept fixed to 0 (neutral regarding inputs).
 c.mu2r_0mu = 0;
-c.mu2r_0sa = 0;
+c.mu2r_0sa = 1;
 c.mu2a_0mu = 0;
-c.mu2a_0sa = 0;
+c.mu2a_0sa = 1;
 
 % Initial sigma2
 c.logsa2r_0mu = log(1);
@@ -142,15 +142,15 @@ c.logsa3a_0sa = 0;
 % This should be fixed (preferably to 1) if the observation model
 % does not use mu3 (kappa then determines the scaling of x3).
 c.logitkamu_r = 0;
-c.logitkasa_r = 0;
+c.logitkasa_r = 1;
 c.logitkamu_a = 0;
-c.logitkasa_a = 0;
+c.logitkasa_a = 1;
 
 % Omega
 c.ommu_r = -4;
-c.omsa_r = 4^2;
+c.omsa_r = 0;
 c.ommu_a = -4;
-c.omsa_a = 4^2;
+c.omsa_a = 0;
 
 % Theta, this is also fixed to 0.5
 c.logitthmu_r = 0.25;
