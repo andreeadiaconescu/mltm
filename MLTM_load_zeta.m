@@ -8,7 +8,7 @@ for  iSubject = 1:length(subjectsAll)
                 options.model.responseModels{1},'.mat']), 'est_int','-mat');
     
     mltm_zeta{iSubject,1} = tmp.est_int.p_obs.ze1;
-    
+    mltm_zeta{iSubject,2} = tmp.est_int.p_obs.beta;
 end
 zeta = cell2mat(mltm_zeta);
 
