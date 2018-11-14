@@ -8,7 +8,7 @@ save(fullfile(options.resultroot ,['models_results.mat']), ...
     'models', '-mat');
 
 %% Model Selection
-[~,model_posterior,xp,protected_xp,~]=spm_BMS(models);
+[~,model_posterior,xp,protected_xp,~]=spm_BMS(models(:,[1 2 3 4 7 8 9 10]));
 H=model_posterior;
 P = xp;
 N=numel(H);
@@ -51,4 +51,77 @@ set(gca,'XTick',1:nModels)
 set(gca,'XTickLabel',options.model.labels);
 ylabel('Exceedance Probabilities');
 disp(['Best model: ', num2str(find(model_posterior==max(model_posterior)))]);
+
+%% Use in case of multiple famillies
+
+load(options.family.template);
+family1=family_allmodels;
+family1.alpha0=[];
+family1.s_samp= [];
+family1.exp_r=[];
+family1.xp=[];
+family1.names=options.family.responsemodels1.labels;
+family1.partition = options.family.responsemodels1.partition;
+[family_models1,~] = spm_compare_families(models,family1);
+
+figure;
+H=family_models1.exp_r;
+N=numel(H);
+colors=jet(numel(H));
+for i=1:N
+    h=bar(i,H(i));
+    if i==1, hold on, end
+    set(h,'FaceColor',colors(i,:))
+end
+set(gca,'XTick',1:2)
+set(gca,'XTickLabel',options.family.responsemodels1.labels);
+ylabel('p(r|y)');
+
+family2=family1;
+family2=family_models1;
+family2.alpha0=[];
+family2.s_samp= [];
+family2.exp_r=[];
+family2.xp=[];
+family2.names=options.family.responsemodels2.labels;
+family2.partition = options.family.responsemodels2.partition;
+[family_models2,~] = spm_compare_families(models,family2);
+
+figure;
+H=family_models2.exp_r;
+N=numel(H);
+colors=jet(numel(H));
+for i=1:N
+    h=bar(i,H(i));
+    if i==1, hold on, end
+    set(h,'FaceColor',colors(i,:))
+end
+set(gca,'XTick',1:3)
+set(gca,'XTickLabel',options.family.responsemodels2.labels);
+ylabel('p(r|y)');
+
+family3=family1;
+family3=family_models1;
+family3.alpha0=[];
+family3.s_samp= [];
+family3.exp_r=[];
+family3.xp=[];
+family3.names=options.family.responsemodels3.labels;
+family3.partition = options.family.responsemodels3.partition;
+[family_models3,~] = spm_compare_families(models,family3);
+
+figure;
+H=family_models3.exp_r;
+N=numel(H);
+colors=jet(numel(H));
+for i=1:N
+    h=bar(i,H(i));
+    if i==1, hold on, end
+    set(h,'FaceColor',colors(i,:))
+end
+set(gca,'XTick',1:2)
+set(gca,'XTickLabel',options.family.responsemodels3.labels);
+ylabel('p(r|y)');
+
+
 end

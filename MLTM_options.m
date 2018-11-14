@@ -20,7 +20,7 @@ options.model.pathResponse   = fullfile([options.code,'/Response_Model']);
 
 % Analysis setting 
 options.firstlevel  = [0 1];
-options.secondlevel = [1 1];
+options.secondlevel = [1 1 1];
 
 % Add paths: HGF, VBA
 addpath(genpath(options.model.pathPerceptual));
@@ -41,6 +41,10 @@ options.model.labels = ...
 
 options.family.responsemodels1.labels = {'Both','Card'};
 options.family.responsemodels1.partition = [1 2 1 2 1 2 1 2 1 2 1 2];
+options.family.responsemodels2.labels = {'HGF','Normative','HGFDrift'};
+options.family.responsemodels2.partition = [1 1 2 2 3 3 1 1 2 2 3 3];
+options.family.responsemodels3.labels = {'Reward','NoReward'};
+options.family.responsemodels3.partition = [1 1 1 1 1 1 2 2 2 2 2 2];
 
 
 

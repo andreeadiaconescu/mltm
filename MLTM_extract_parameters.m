@@ -18,6 +18,8 @@ logBFs     = log_bfs_all(:,1);
 % Load Parameters
 [mltm_par] = MLTM_load_parameters(options);
 
+design_matrix = [mltm_zeta mltm_par ones(size(mltm_par,1),1)];
+
 %% Plot & Stats
 
 % Plot 1
@@ -31,39 +33,12 @@ title('Predicting Gaze Bias from LogBFs');
 s.LineWidth = 0.6;
 s.MarkerFaceColor = [0 0.5 0.5];
 
-[R,P,RLO,RUP]   = corrcoef(advice_taking(:,4),log(mltm_zeta));
+[B,BINT,R,RINT,stats] = regress(advice_taking(:,1),design_matrix);
+disp(['GLM with taking advice as the dependent variable:'...
+' the R-square statistic, the F statistic and p value  ' ...
+num2str(stats(1:3))]);
 
-disp(['Advice-Taking and Zeta ' num2str(R(1,2))]);
-disp(['Advice-Taking and Zeta ' num2str(P(1,2))]);
-
-% Plot 2
-s = MLTM_scatter(advice_taking(:,4),log(mltm_zeta),100,'r');
-title('Relating Zeta to Advice-Taking (Helpful)');
-s.LineWidth = 0.6;
-s.MarkerFaceColor = [0 0.5 0.5];
-
-% Plot 3
-[R,P,RLO,RUP]   = corrcoef(advice_taking(:,1),mltm_par(:,1));
-
-disp(['Advice-Taking and Omega_Card ' num2str(R(1,2))]);
-disp(['Advice-Taking and Omega_Card ' num2str(P(1,2))]);
-
-s = MLTM_scatter(advice_taking(:,1),mltm_par(:,1),100,'m');
-title('Predicting Gaze Bias from Omega_Card');
-s.LineWidth = 0.6;
-s.MarkerFaceColor = [0 0.5 0.5];
-
-[R,P,RLO,RUP]   = corrcoef(advice_taking(:,1),log(mltm_zeta));
-
-disp(['Advice-Taking and Zeta ' num2str(R(1,2))]);
-disp(['Advice-Taking and Zeta ' num2str(P(1,2))]);
-
-% Plot 2
-s = MLTM_scatter(advice_taking(:,1),log(mltm_zeta),100,'r');
-title('Relating Zeta to Advice-Taking (Misleading)');
-s.LineWidth = 0.6;
-s.MarkerFaceColor = [0 0.5 0.5];
-
-
-
+%% Save as table
+ofile=fullfile(options.resultroot,'MLTM_MAP_estimates_winning_model_nonModelVariables.xlsx');
+xlswrite(ofile, [str2num(cell2mat(options.subjects')) design_matrix]);
 end

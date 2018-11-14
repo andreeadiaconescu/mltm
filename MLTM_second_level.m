@@ -10,8 +10,9 @@ disp(Analysis_Strategy);
 fprintf('\n\n===\n\n');
 pause(2);
 
-doModelComparison         = Analysis_Strategy(1);
-doParameterExtraction     = Analysis_Strategy(2);
+doModelComparison              = Analysis_Strategy(1);
+doCheckParameterCorrelations   = Analysis_Strategy(2);
+doParameterExtraction          = Analysis_Strategy(3);
 
 
 % Deletes previous preproc/stats files of analysis specified in options
@@ -21,4 +22,6 @@ end
 if doParameterExtraction
    MLTM_extract_parameters(options);    
 end
-
+if doCheckParameterCorrelations
+    MLTM_check_correlations(options);
+end
