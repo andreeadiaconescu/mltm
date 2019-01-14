@@ -28,4 +28,5 @@ Groups    = [ones(length(x), 1); 2*ones(length(y), 1); 3*ones(length(z), 1);4*on
 p = anovan(current_var,{IA_variable.group IA_variable.condition},...
     'model','interaction','varnames',{'Group','Frame'});
 figure; vs = violinplot(Variables, Groups);
+
 end

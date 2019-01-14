@@ -8,10 +8,16 @@ group      = txt(2:end,3);
 condition  = txt(2:end,2);
 
 % Dependent Variables
-[zeta]           = MLTM_load_zeta(options);
-advice           = MAPs(:,6);
+[zeta]                 = MLTM_load_zeta(options);
+[perceptualParameters] = MLTM_load_parameters(options);
+with_advice            = MAPs(:,6);
 
-[vs] = MLTM_violinplot(log(zeta(:,1)),condition,group);
+kappa_r                = perceptualParameters(:,1);
+against_incorrect      = MAPs(:,16);
+
+curr_var               = log(zeta(:,1));
+
+[vs] = MLTM_violinplot(curr_var,condition,group);
 
 
 
