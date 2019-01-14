@@ -4,8 +4,8 @@ subjectsAll = options.subjects;
 mltm_par      = cell(numel(subjectsAll), 4);
 for  iSubject = 1:length(subjectsAll)
     sprintf('%s',subjectsAll{iSubject})
-    tmp = load(fullfile(options.resultroot,[subjectsAll{iSubject},options.model.perceptualModels{1}, ...
-                options.model.responseModels{1},'.mat']), 'est_int','-mat');
+    tmp = load(fullfile(options.resultroot,[subjectsAll{iSubject},options.model.winningPerceptual, ...
+                options.model.winningResponse,'.mat']), 'est_int','-mat');
     
     mltm_par{iSubject,1} = tmp.est_int.p_prc.ka_r;
     mltm_par{iSubject,2} = tmp.est_int.p_prc.th_r;

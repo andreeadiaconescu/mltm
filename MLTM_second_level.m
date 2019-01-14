@@ -1,3 +1,4 @@
+
 function MLTM_second_level(options)
 %Performs all analysis steps for one subject of the MLTM study (up until
 % first level modelbased statistics)
@@ -13,6 +14,7 @@ pause(2);
 doModelComparison              = Analysis_Strategy(1);
 doCheckParameterCorrelations   = Analysis_Strategy(2);
 doParameterExtraction          = Analysis_Strategy(3);
+doComputeANOVA                 = Analysis_Strategy(4);
 
 
 % Deletes previous preproc/stats files of analysis specified in options
@@ -24,4 +26,7 @@ if doParameterExtraction
 end
 if doCheckParameterCorrelations
     MLTM_check_correlations(options);
+end
+if doComputeANOVA
+    MLTM_plot_MAPs(options);
 end

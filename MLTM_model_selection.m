@@ -8,7 +8,7 @@ save(fullfile(options.resultroot ,['models_results.mat']), ...
     'models', '-mat');
 
 %% Model Selection
-[~,model_posterior,xp,protected_xp,~]=spm_BMS(models(:,[1 2 3 4 7 8 9 10]));
+[~,model_posterior,xp,protected_xp,~]=spm_BMS(models);
 H=model_posterior;
 P = xp;
 N=numel(H);
@@ -77,8 +77,7 @@ set(gca,'XTick',1:2)
 set(gca,'XTickLabel',options.family.responsemodels1.labels);
 ylabel('p(r|y)');
 
-family2=family1;
-family2=family_models1;
+family2=family_allmodels;
 family2.alpha0=[];
 family2.s_samp= [];
 family2.exp_r=[];
@@ -96,32 +95,10 @@ for i=1:N
     if i==1, hold on, end
     set(h,'FaceColor',colors(i,:))
 end
-set(gca,'XTick',1:3)
+set(gca,'XTick',1:2)
 set(gca,'XTickLabel',options.family.responsemodels2.labels);
 ylabel('p(r|y)');
 
-family3=family1;
-family3=family_models1;
-family3.alpha0=[];
-family3.s_samp= [];
-family3.exp_r=[];
-family3.xp=[];
-family3.names=options.family.responsemodels3.labels;
-family3.partition = options.family.responsemodels3.partition;
-[family_models3,~] = spm_compare_families(models,family3);
-
-figure;
-H=family_models3.exp_r;
-N=numel(H);
-colors=jet(numel(H));
-for i=1:N
-    h=bar(i,H(i));
-    if i==1, hold on, end
-    set(h,'FaceColor',colors(i,:))
-end
-set(gca,'XTick',1:2)
-set(gca,'XTickLabel',options.family.responsemodels3.labels);
-ylabel('p(r|y)');
 
 
 end

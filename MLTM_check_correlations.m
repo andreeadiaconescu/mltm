@@ -3,8 +3,8 @@ function MLTM_check_correlations(options)
 subjectsAll = options.subjects;
 for  iSubject = 1:length(subjectsAll)
     sprintf('%s',subjectsAll{iSubject})
-    tmp = load(fullfile(options.resultroot,[subjectsAll{iSubject},options.model.perceptualModels{1}, ...
-        options.model.responseModels{1},'.mat']), 'est_int','-mat');
+    tmp = load(fullfile(options.resultroot,[subjectsAll{iSubject},options.model.winningPerceptual, ...
+                options.model.winningResponse,'.mat']), 'est_int','-mat');
     corrMatrix    = tmp.est_int.optim.Corr;
     z_transformed = real(compi_fisherz(reshape(corrMatrix,size(corrMatrix,1)^2,1)));
     averageCorr{iSubject,1}=reshape(z_transformed,size(corrMatrix,1),...
