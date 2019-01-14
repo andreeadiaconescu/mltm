@@ -1,4 +1,4 @@
-function c = hgf_binary_reward_social_config(ptrans)
+function c = hgf_binary3l_reward_social_config(ptrans)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Contains the configuration for the Hierarchical Gaussian Filter (HGF) for binary inputs restricted
@@ -102,7 +102,7 @@ function c = hgf_binary_reward_social_config(ptrans)
 c = struct;
 
 % Model name
-c.model = 'hgf_binary_reward_social';
+c.model = 'hgf_binary3l_reward_social';
 
 % Upper bound for kappa and theta (lower bound is always zero)
 c.kaub_r = 1;
@@ -115,15 +115,15 @@ c.thub_a = 1;
 % Initial mu2
 % Usually best kept fixed to 0 (neutral regarding inputs).
 c.mu2r_0mu = 0;
-c.mu2r_0sa = 0;
+c.mu2r_0sa = 1;
 c.mu2a_0mu = 0;
-c.mu2a_0sa = 0;
+c.mu2a_0sa = 1;
 
 % Initial sigma2
 c.logsa2r_0mu = log(1);
-c.logsa2r_0sa = 0;
+c.logsa2r_0sa = 1;
 c.logsa2a_0mu = log(1);
-c.logsa2a_0sa = 0;
+c.logsa2a_0sa = 1;
 
 % Initial mu3
 % Usually best kept fixed to 1 (determines origin on x3-scale).
@@ -134,17 +134,17 @@ c.mu3a_0sa = 1;
 
 % Initial sigma3
 c.logsa3r_0mu = log(1);
-c.logsa3r_0sa = 0;
+c.logsa3r_0sa = 1;
 c.logsa3a_0mu = log(1);
-c.logsa3a_0sa = 0;
+c.logsa3a_0sa = 1;
 
 % Kappa
 % This should be fixed (preferably to 1) if the observation model
 % does not use mu3 (kappa then determines the scaling of x3).
 c.logitkamu_r = 0;
-c.logitkasa_r = 0;
+c.logitkasa_r = 1;
 c.logitkamu_a = 0;
-c.logitkasa_a = 0;
+c.logitkasa_a = 1;
 
 % Omega
 c.ommu_r = -4;
@@ -154,29 +154,9 @@ c.omsa_a = 4^2;
 
 % Theta, this is also fixed to 0.5
 c.logitthmu_r = 0.25;
-c.logitthsa_r = 4^2; % 
+c.logitthsa_r = 1; % 
 c.logitthmu_a = 0.25;
-c.logitthsa_a = 4^2;
-
-% Phis
-% Format: row vector of length n_levels.
-% Undefined (therefore NaN) at the first level.
-% Fix this to zero (-Inf in logit space) to set to zero.
-c.logitphimu_r = tapas_logit(0.1,1);
-c.logitphisa_r = 2;
-c.logitphimu_a = tapas_logit(0.1,1);
-c.logitphisa_a = 2;
-
-% ms
-% Format: row vector of length n_levels.
-% This should be fixed for all levels where the omega of
-% the next lowest level is not fixed because that offers
-% an alternative parametrization of the same model.
-c.mmu_r = c.mu3r_0mu;
-c.msa_r = 1;
-c.mmu_a = c.mu3a_0mu;
-c.msa_a = 1;
-
+c.logitthsa_a = 1;
 
 % Gather prior settings in vectors
 c.priormus = [
@@ -194,10 +174,7 @@ c.priormus = [
     c.logitkamu_a,...
     c.ommu_a,...
     c.logitthmu_a,...
-    c.logitphimu_r,...
-    c.logitphimu_a,...
-    c.mmu_r,...
-    c.mmu_a];
+    ];
 
 c.priorsas = [
     c.mu2r_0sa,...
@@ -214,16 +191,13 @@ c.priorsas = [
     c.logitkasa_a,...
     c.omsa_a,...
     c.logitthsa_a,...
-    c.logitphisa_r,...
-    c.logitphisa_a,...
-    c.msa_r,...
-    c.msa_a];
+    ];
 
 % Model function handle
-c.prc_fun = @hgf_binary_reward_social;
+c.prc_fun = @hgf_binary3l_reward_social;
 
 % Handle to function that transforms perceptual parameters to their native space
 % from the space they are estimated in
-c.transp_prc_fun = @hgf_binary_reward_social_transp;
+c.transp_prc_fun = @hgf_binary3l_reward_social_transp;
 
-end
+return;

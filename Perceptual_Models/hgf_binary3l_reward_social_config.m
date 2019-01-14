@@ -115,9 +115,9 @@ c.thub_a = 1;
 % Initial mu2
 % Usually best kept fixed to 0 (neutral regarding inputs).
 c.mu2r_0mu = 0;
-c.mu2r_0sa = 1;
+c.mu2r_0sa = 0;
 c.mu2a_0mu = 0;
-c.mu2a_0sa = 1;
+c.mu2a_0sa = 0;
 
 % Initial sigma2
 c.logsa2r_0mu = log(1);
@@ -128,15 +128,15 @@ c.logsa2a_0sa = 0;
 % Initial mu3
 % Usually best kept fixed to 1 (determines origin on x3-scale).
 c.mu3r_0mu = 1;
-c.mu3r_0sa = 0;
+c.mu3r_0sa = 1;
 c.mu3a_0mu = 1;
-c.mu3a_0sa = 0;
+c.mu3a_0sa = 1;
 
 % Initial sigma3
 c.logsa3r_0mu = log(1);
-c.logsa3r_0sa = 0;
+c.logsa3r_0sa = 1;
 c.logsa3a_0mu = log(1);
-c.logsa3a_0sa = 0;
+c.logsa3a_0sa = 1;
 
 % Kappa
 % This should be fixed (preferably to 1) if the observation model
@@ -153,9 +153,9 @@ c.logitkasa_a = 1;
 
 % Omega
 c.ommu_r = -4;
-c.omsa_r = 0;
+c.omsa_r = 4^2;
 c.ommu_a = -4;
-c.omsa_a = 0;
+c.omsa_a = 4^2;
 
 % c.ommu_r = -4;
 % c.omsa_r = 0;
@@ -165,9 +165,9 @@ c.omsa_a = 0;
 
 % Theta, this is also fixed to 0.5
 c.logitthmu_r = 0.25;
-c.logitthsa_r = 4^2;
+c.logitthsa_r = 1;
 c.logitthmu_a = 0.25;
-c.logitthsa_a = 4^2;
+c.logitthsa_a = 1;
 
 % c.logitthmu_r = 0.25;
 % c.logitthsa_r = 0;

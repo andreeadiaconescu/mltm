@@ -106,8 +106,8 @@ wc = pc./(ze1.*px + pc);
 
 %% Version 3
 % beta=exp(-mu3_hat_r)+exp(-mu3_hat_a);
-beta=exp((-mu3_hat_r)+exp(-mu3_hat_a)+(log(beta)));
-% beta=exp((log(beta)));
+% beta=exp((-mu3_hat_r)+exp(-mu3_hat_a)+(log(beta)));
+beta=exp((log(beta)));
 %%
 
 
@@ -128,12 +128,18 @@ end
 % Belief vector
 b = wx.*x_a + wc.*x_r;
 
+% Calculate log-probabilities for non-irregular trials
+logp(not(ismember(1:length(logp),r.irr))) = y.*beta.*log(b./(1-b)) + ...
+    log((1-b).^(beta) ./((1-b).^(beta) + ...
+    b.^(beta)));
+
+
 % OLD VERSION - NO CARD VALUES
 % Calculate log-probabilities for non-irregular trials
 % logp(not(ismember(1:length(logp),r.irr))) = y.*beta.*log(b./(1-b)) +log((1-b).^beta ./((1-b).^beta +b.^beta));
 % prob = b.^(beta)./(b.^(beta)+(1-b).^(beta));
 
-prob = 1./(1+exp(-beta.*(expr_gaze.*b-expr_nogaze.*(1-b)).*(2.*y-1)));
-reg = ~ismember(1:n,r.irr);
-logp(reg) = log(prob);
+% prob = 1./(1+exp(-beta.*(expr_gaze.*b-expr_nogaze.*(1-b)).*(2.*y-1)));
+% reg = ~ismember(1:n,r.irr);
+% logp(reg) = log(prob);
 return;
