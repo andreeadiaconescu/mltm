@@ -19,8 +19,8 @@ subplot(2,2,3); violinplot(ConditionMisleadingLow);
 subplot(2,2,4); violinplot(ConditionMisleadingHigh);
 
 x = cell2mat(table2cell(ConditionHelpfulLow));
-y = cell2mat(table2cell(ConditionHelpfulHigh));
-z = cell2mat(table2cell(ConditionMisleadingLow));
+y = cell2mat(table2cell(ConditionMisleadingLow));
+z = cell2mat(table2cell(ConditionHelpfulHigh));
 t = cell2mat(table2cell(ConditionMisleadingHigh));
 
 Variables = [x; y; z; t];

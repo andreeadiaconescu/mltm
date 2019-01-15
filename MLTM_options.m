@@ -19,7 +19,7 @@ options.model.pathPerceptual = fullfile([options.code,'/Perceptual_Model']);
 options.model.pathResponse   = fullfile([options.code,'/Response_Model']);
 
 % Analysis setting
-options.firstlevel  = [1 1];
+options.firstlevel  = [1 0];
 options.secondlevel = [1 1 1 1];
 
 % Add paths: HGF, VBA
@@ -33,8 +33,8 @@ options.questionnaires              = fullfile([options.dataroot,'/Questionnaire
 options.groups                      = fullfile([options.dataroot,'/Questionnaire_Data/MLTM_Groups_Conditions.xlsx']);
 
 options.model.perceptualModels   = {'hgf_binary3l_normative_config','hgf_binary3l_reward_social_fixOmega_config'};                                
-options.model.responseModels     =  {'softmax_reward_social_fix_config','softmax_reward_fix_config',...
-                                     'softmax_reward_social_fix_no_reward_config','softmax_reward_fix_no_reward_config'};
+options.model.responseModels     = {'softmax_reward_social_fix_config','softmax_reward_fix_config',...
+                                    'softmax_reward_social_fix_no_reward_config','softmax_reward_fix_no_reward_config'};
                                  
 options.model.winningPerceptual   = 'hgf_binary3l_reward_social_fixOmega_config';                                
 options.model.winningResponse     = 'softmax_reward_social_fix_config';

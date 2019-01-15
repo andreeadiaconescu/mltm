@@ -1,4 +1,4 @@
-function [s] = MLTM_scatter2(X1, Y1, S1, C1)
+function [s] = MLTM_scatter1(X1, Y1, S1, C1)
 %CREATEFIGURE(X1, Y1, S1, C1)
 %  X1:  scatter x
 %  Y1:  scatter y
@@ -19,10 +19,10 @@ hold(axes1,'on');
 s = scatter(X1,Y1,S1,C1);
 
 % Create xlabel
-xlabel('Zeta');
+xlabel('Beta');
 
 % Create ylabel
-ylabel('Going with Incongruent Gaze');
+ylabel('Total Score');
 
 % Set the remaining axes properties
 set(axes1,'FontName','Constantia','FontSize',20);
