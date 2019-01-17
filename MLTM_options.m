@@ -18,6 +18,11 @@ options.code                 = fullfile(fileparts(mfilename('fullpath')));
 options.model.pathPerceptual = fullfile([options.code,'/Perceptual_Model']);
 options.model.pathResponse   = fullfile([options.code,'/Response_Model']);
 
+% Design
+options.task.stable_card     = [ones(20,1); ones(20,1).*NaN; ones(20,1);ones(60,1).*NaN];
+options.task.volatile_card   = [ones(60,1).*NaN; ones(60,1)];
+options.task.chance_card     = [ones(20,1).*NaN; ones(20,1); ones(20,1).*NaN;ones(60,1).*NaN];
+
 % Analysis setting
 options.firstlevel  = [1 0];
 options.secondlevel = [1 1 1 1];

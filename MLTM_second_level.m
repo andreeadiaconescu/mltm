@@ -1,9 +1,8 @@
 
 function MLTM_second_level(options)
-%Performs all analysis steps for one subject of the MLTM study (up until
-% first level modelbased statistics)
-%   IN:     id          subject identifier string, e.g. '151'
-%           options     as set by dmpad_set_analysis_options();
+%Performs all analysis steps at the group levle
+%   IN:    
+%           options     as set by MLTM_options();
 
 fprintf('\n===\n\t The following pipeline Steps were selected. Please double-check:\n\n');
 Analysis_Strategy = options.secondlevel;
