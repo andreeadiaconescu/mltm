@@ -21,7 +21,7 @@ kappa_card = perceptualParameters(:,1);
 ANOVAKappa = tbl;  %InPaper
 
 % ~ ~ zeta ~ ~ ~ ~
-zeta_parameter = log(zeta(:,1));
+zeta_parameter = zeta(:,1);
 [BehavTable2]     = MLTM_get_table(zeta_parameter,options);
 
 [p,tbl,stats,terms] = anovan(...
@@ -106,6 +106,16 @@ MainResults.low.zeta.pBonf        = p*2;
     ttest2(cell2mat(table2cell(ZetaHighHelpful)), cell2mat(table2cell(ZetaHighMisleading)));
 MainResults.high.zeta.p           = p;
 MainResults.high.zeta.pBonf       = p*2;
+
+[h,p,ci,MainResults.helpful.zeta]     = ...
+    ttest2(cell2mat(table2cell(ZetaLowHelpful)), cell2mat(table2cell(ZetaHighHelpful)));
+MainResults.helpful.zeta.p            = p;
+MainResults.helpful.zeta.pBonf        = p*2;
+
+[h,p,ci,MainResults.misleading.zeta]    = ...
+ ttest2(cell2mat(table2cell(ZetaLowMisleading)), cell2mat(table2cell(ZetaHighMisleading)));
+MainResults.misleading.zeta.p           = p;
+MainResults.misleading.zeta.pBonf       = p*2;
 
 display_substruct(MainResults);
 end

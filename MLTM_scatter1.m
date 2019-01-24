@@ -19,10 +19,10 @@ hold(axes1,'on');
 s = scatter(X1,Y1,S1,C1);
 
 % Create xlabel
-xlabel('Beta');
+xlabel('Zeta');
 
 % Create ylabel
-ylabel('Total Score');
+ylabel('Arbitration');
 
 % Set the remaining axes properties
 set(axes1,'FontName','Constantia','FontSize',20);
