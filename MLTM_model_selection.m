@@ -99,6 +99,29 @@ set(gca,'XTick',1:2)
 set(gca,'XTickLabel',options.family.responsemodels2.labels);
 ylabel('p(r|y)');
 
+family3=family_allmodels;
+family3.alpha0=[];
+family3.s_samp= [];
+family3.exp_r=[];
+family3.xp=[];
+family3.names=options.family.responsemodels3.labels;
+family3.partition = options.family.responsemodels3.partition;
+[family_models3,~] = spm_compare_families(models,family3);
+
+figure;
+H=family_models3.exp_r;
+N=numel(H);
+colors=jet(numel(H));
+for i=1:N
+    h=bar(i,H(i));
+    if i==1, hold on, end
+    set(h,'FaceColor',colors(i,:))
+end
+set(gca,'XTick',1:2)
+set(gca,'XTickLabel',options.family.responsemodels3.labels);
+ylabel('p(r|y)');
+
+
 
 
 end
