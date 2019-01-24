@@ -10,26 +10,46 @@ condition  = txt(2:end,2);
 % Dependent Variables
 [zeta]                 = MLTM_load_zeta(options);   % high AQ, interaction
 [perceptualParameters] = MLTM_load_parameters(options);
+% 
+kappa_r                = perceptualParameters(:,1); % low AQ, interaction
+face_consideration     = MAPs(:,18);                % low AQ, interaction
 
-kappa_r                = perceptualParameters(:,1); % lowAQ, interaction
-face_consideration     = MAPs(:,19);                % lowAQ, interaction
+perf_acc               = MAPs(:,19).*10^2;          % main effect, group
+total_score            = MAPs(:,20);                % main effect, group
 
-perf_acc               = MAPs(:,20);                % group
-total_score            = MAPs(:,21);                % group
+go_with_gaze_incorrect_freq ...
+                       = MAPs(:,21);                % main effect, group
 
-going_with_incongruent_gaze ...
-                       = MAPs(:,22);                % high AQ, interaction
-
-going_against_congruent_gaze ...
-                       = MAPs(:,23);                % condition
+go_against_gaze_correct_freq ...
+                       = MAPs(:,22);                % main effect, condition
 arbitration_stable_card ...
-                       = MAPs(:,24);                % high AQ, interaction
+                       = MAPs(:,23);                % high AQ, interaction
 arbitration_volatile_card ...
-                       = MAPs(:,25);                % high AQ, interaction
+                       = MAPs(:,24);                % high AQ, interaction
 pi2_card ...
-                       = MAPs(:,30);                
+                       = MAPs(:,29);
+adviceTaking1 ...
+                       = MAPs(:,34);
+adviceTaking2 ...
+                       = MAPs(:,35);
+adviceTaken_VolatilityGazeHighAccuracy ...
+                       = MAPs(:,36);                % main effect, condition
+adviceTaken_VolatilityGazeLowAccuracy ...
+                       = MAPs(:,37);                % main effect, group
                    
-curr_var               = face_consideration;                  % lowAQ, interaction
+zeta1_newModel ...
+                       = MAPs(:,38);
+adviceTaken_Volatility...
+                       = MAPs(:,39);               % main effect group
+adviceTaken_Stability...
+                       = MAPs(:,40);
+adviceTaken_StableGazeCongruent...                 % main effect condition
+                       = MAPs(:,41);
+                   
+adviceTaken_StableGazeIncongruent...               % main effect condition
+                       = MAPs(:,42);
+                   
+curr_var               = adviceTaken_VolatilityGazeLowAccuracy;                  
 
 [vs] = MLTM_violinplot(curr_var,condition,group);
 
