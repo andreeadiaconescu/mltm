@@ -49,9 +49,13 @@ adviceTaken_StableGazeCongruent...                 % main effect condition
 adviceTaken_StableGazeIncongruent...               % main effect condition
                        = MAPs(:,42);
                    
-curr_var               = adviceTaken_VolatilityGazeLowAccuracy;                  
+curr_var               = kappa_r; 
+currentMAP             = 'kappa_r';
 
-[vs] = MLTM_violinplot(curr_var,condition,group);
+curr_var               = pi2_card; 
+currentMAP             = 'pi_2';
+
+MLTM_violinplot(curr_var,condition,group,currentMAP);
 
 
 
